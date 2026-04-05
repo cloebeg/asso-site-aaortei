@@ -1,0 +1,105 @@
+@use '../../../styles/variables' as *;
+
+.sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100vh;
+  width: 220px;
+  background: white;
+  border-right: 2px solid $color-primary;
+  display: flex;
+  flex-direction: column;
+  padding: $spacing-lg $spacing-sm;
+  z-index: 100;
+
+  ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-sm;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    padding: $spacing-sm;
+    border-radius: 12px;
+    text-decoration: none;
+    color: $color-text;
+    font-family: $font-title;
+    font-size: 1.1rem;
+    transition:
+      background 0.2s,
+      color 0.2s;
+
+    &:hover {
+      background: $color-primary;
+      color: white;
+    }
+
+    &.active {
+      background: $color-accent;
+      color: white;
+    }
+
+    .icon {
+      font-size: 1.4rem;
+    }
+  }
+}
+
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: white;
+  border-bottom: 2px solid $color-primary;
+  padding: $spacing-sm;
+
+  .hamburger {
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: $color-accent;
+    font-family: $font-title;
+  }
+
+  .mobile-menu {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-xs;
+    padding-top: $spacing-sm;
+
+    a {
+      display: flex;
+      align-items: center;
+      gap: $spacing-sm;
+      padding: $spacing-sm;
+      border-radius: 12px;
+      text-decoration: none;
+      color: $color-text;
+      font-family: $font-title;
+      font-size: 1.1rem;
+
+      &.active {
+        color: $color-accent;
+      }
+    }
+  }
+}
+
+@media (max-width: $bp-mobile) {
+  .sidebar {
+    display: none;
+  }
+  .mobile-nav {
+    display: block;
+  }
+}
