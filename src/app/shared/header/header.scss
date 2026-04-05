@@ -1,0 +1,37 @@
+@use '../../../styles/variables' as *;
+
+.main-header {
+  position: relative;
+  width: 100%;
+  min-height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  background: transparent;
+  z-index: 200;
+
+  .header-drip {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .logo-link {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    margin-bottom: -20px;
+
+    .logo {
+      height: 400px;
+      width: auto;
+      object-fit: contain;
+      transition: transform 0.3s ease;
+    }
+  }
+}
