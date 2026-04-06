@@ -1,21 +1,11 @@
-<div class="fab-nav" [class.open]="isOpen()">
-  <ul class="fab-items">
-    @for (link of navLinks; track link.path; let i = $index) {
-      <li class="fab-item" [style.--i]="navLinks.length - i">
-        <a [routerLink]="link.path"
-           routerLinkActive="active"
-           [routerLinkActiveOptions]="{ exact: link.path === '/' }"
-           (click)="toggle()">
-          <div class="fab-blob">
-            <img [src]="link.icon" [alt]="link.label" />
-          </div>
-          <span class="fab-label">{{ link.label }}</span>
-        </a>
-      </li>
-    }
-  </ul>
-
-  <button class="fab-main" (click)="toggle()">
-    <span class="fab-main-icon">{{ isOpen() ? '✕' : '☰' }}</span>
-  </button>
-</div>
+<nav class="topnav">
+  @for (link of navLinks; track link.path) {
+    <a [routerLink]="link.path"
+       routerLinkActive="active"
+       [routerLinkActiveOptions]="{ exact: link.path === '/' }"
+       class="topnav-item">
+      <img [src]="link.icon" [alt]="link.label" class="topnav-icon" />
+      <span class="topnav-label">{{ link.label }}</span>
+    </a>
+  }
+</nav>
