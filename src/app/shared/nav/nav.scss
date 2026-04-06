@@ -1,0 +1,126 @@
+@use '../../../styles/variables' as *;
+
+.fab-nav {
+  position: fixed;
+  bottom: $spacing-lg;
+  left: $spacing-lg;
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+}
+
+.fab-main {
+  width: 68px;
+  height: 68px;
+  border-radius: 50%;
+  background: $color-bg;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 28px rgba(0, 0, 0, 0.2);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  .fab-main-icon {
+    font-size: 1.4rem;
+    color: $color-text;
+    font-family: $font-title;
+  }
+}
+
+.fab-items {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0;
+  margin: 0;
+}
+
+.fab-item {
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition:
+    opacity 0.3s ease calc(var(--i) * 0.05s),
+    transform 0.3s ease calc(var(--i) * 0.05s);
+
+  .fab-nav.open & {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+  }
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    text-decoration: none;
+    color: $color-text;
+
+    .fab-blob {
+      width: 100px;
+      height: 100px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: transform 0.2s ease;
+
+      img {
+        width: 110%;
+        height: 110%;
+        object-fit: contain;
+        filter: brightness(0) invert(1) sepia(1) saturate(3) hue-rotate(90deg) brightness(0.7);
+        transition:
+          filter 0.2s ease,
+          transform 0.2s ease;
+      }
+    }
+
+    .fab-label {
+      font-family: $font-title;
+      font-size: 1.1rem;
+      background: white;
+      padding: 6px 16px;
+      border-radius: 20px;
+      border: 2px solid $color-primary;
+      opacity: 0;
+      transform: translateX(-10px);
+      transition:
+        opacity 0.2s ease,
+        transform 0.2s ease;
+      white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      min-width: 120px;
+      text-align: center;
+    }
+
+    &:hover {
+      .fab-blob img {
+        filter: brightness(0) invert(1) sepia(1) saturate(4) hue-rotate(90deg) brightness(0.5);
+        transform: scale(1.15);
+      }
+
+      .fab-label {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+  }
+}
