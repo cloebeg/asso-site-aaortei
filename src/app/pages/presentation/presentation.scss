@@ -1,0 +1,90 @@
+.team {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.team-title {
+  font-family: chewy, cursive;;
+  font-size: 2rem;
+  margin-bottom: 40px;
+}
+
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); // 2 colonnes par défaut
+  gap: 40px;
+  justify-items: center; // centre les cartes dans chaque colonne
+
+  // Membre 3 prend toute la largeur et se centre
+  .team-card-single {
+    grid-column: 1 / -1; // occupe toutes les colonnes
+  }
+}
+
+.team-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.team-image {
+  position: relative;
+  width: 400px;
+  height: 400px;
+  overflow: hidden;
+  border-radius: 200px;
+}
+
+.team-image img {
+  width: 90%;
+  height: 90%;
+  object-fit: cover;
+  transform: scale(1.8);
+  transition: transform 0.4s ease;
+}
+
+.team-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(137, 29, 29, 0.871);
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.team-image:hover img {
+  transform: scale(1.7);
+}
+
+.team-image:hover .team-overlay {
+  opacity: 1;
+}
+
+.team-name {
+  margin-top: 10px;
+  font-family: chewy;
+
+}
+
+.insta-link {
+  color: white;
+  transition: transform 0.2s ease;
+}
+
+.insta-link:hover {
+  transform: scale(1.2);
+}
+
+.team-row {
+  display: flex;
+  justify-content: center; /* centre horizontalement la ligne */
+  gap: 40px; /* espace entre les membres sur la ligne */
+  margin-bottom: 40px; /* espace entre les lignes */
+}
