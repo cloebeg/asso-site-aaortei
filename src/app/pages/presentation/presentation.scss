@@ -57,6 +57,22 @@
 
   opacity: 0;
   transition: opacity 0.3s ease;
+
+  padding: 30px; // espace entre le texte et le bord de l'image
+  text-align: center; // centre le texte horizontalement
+  box-sizing: border-box; // inclut le padding dans la taille de l'overlay
+}
+
+.team-overlay .role-title {
+  font-family: 'Chewy', cursive; 
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.team-overlay .role-desc {
+  font-family: 'calibri', sans-serif;
+  font-size: 1rem;
+  line-height: 1.4;
 }
 
 .team-image:hover img {
