@@ -1,23 +1,76 @@
-<h2>Nous contacter</h2>
+<section class="contact-page">
 
-<form id="contact_mail" action="#" method="POST">
-    <div class="champ">
-        <label for="nom">Nom: </label>
-        <input name="nom" value="" type="text" required>
-    </div>
-    <div class="champ">
-        <label for="prenom">Prénom: </label>
-        <input name="prenom" value="" type="text" required>
-    </div>
-    <div class="champ">
-        <label for="mail">Adresse mail: </label>
-        <input name="mail" value="" type="email" required>
-    </div>
-    <div class="champ">
-        <label for="message">Message: </label>
-        <textarea name="message"></textarea>
-    </div>
-    <div class="champ">
-        <input name="envoyer" value="Envoyer" type="submit" required>
-    </div>
-</form>
+  <div class="contact-card">
+
+    <h2 class="contact-title">
+      Nous contacter 
+    </h2>
+
+    <p class="contact-subtitle">
+      Une question, une idée ou envie de rejoindre l’asso ?
+      Écris-nous juste ici !
+    </p>
+
+    <form class="contact-form">
+
+      <div class="form-row">
+
+        <div class="champ">
+          <label for="nom">Nom</label>
+
+          <input
+            id="nom"
+            type="text"
+            name="nom"
+            placeholder="Dupont"
+            required
+          >
+        </div>
+
+        <div class="champ">
+          <label for="prenom">Prénom</label>
+
+          <input
+            id="prenom"
+            type="text"
+            name="prenom"
+            placeholder="Marie"
+            required
+          >
+        </div>
+
+      </div>
+
+      <div class="champ">
+        <label for="mail">Adresse mail</label>
+
+        <input
+          id="mail"
+          type="email"
+          name="mail"
+          placeholder="exemple@mail.com"
+          required
+        >
+      </div>
+
+      <div class="champ">
+        <label for="message">Message</label>
+
+        <textarea
+          id="message"
+          name="message"
+          rows="7"
+          placeholder="Ton message..."
+          required
+        ></textarea>
+      </div>
+
+      <button type="submit" class="contact-button">
+        Envoyer
+      </button>
+
+    </form>
+
+  </div>
+
+</section>
