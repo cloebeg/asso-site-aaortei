@@ -1,0 +1,113 @@
+<section class="planning-page">
+
+  <div class="planning-header">
+    <div class="header-eyebrow">saison {{currentYear}}</div>
+    <h1 class="planning-title">Planning</h1>
+    <p class="planning-sub">Tous les événements de l'aaorte</p>
+  </div>
+
+  <div class="filter-bar">
+    <button
+      class="filter-btn"
+      [class.active]="activeFilter() === 'upcoming'"
+      (click)="setFilter('upcoming')">
+      À venir
+    </button>
+    <button
+      class="filter-btn"
+      [class.active]="activeFilter() === 'all'"
+      (click)="setFilter('all')">
+      Tous
+    </button>
+    <button
+      class="filter-btn"
+      [class.active]="activeFilter() === 'past'"
+      (click)="setFilter('past')">
+      Archives
+    </button>
+  </div>
+
+  @if (loading()) {
+    <app-loading-dots />
+  }
+
+  @if (!loading()) {
+    <div class="events-list">
+      @for (event of filteredEvents(); track event.id) {
+        <article
+          class="event-card"
+          [class.is-past]="event.status === 'past'"
+          [class.is-ongoing]="event.status === 'ongoing'"
+          [class.is-secret]="event.isSecret">
+
+          <div class="card-body">
+
+            <div class="card-date">
+              <span class="date-day">{{ event.startDate | date:'dd' }}</span>
+              <span class="date-month">{{ event.startDate | date:'MMM' : '' }}</span>
+              @if (event.status === 'past') {
+                <span class="date-year">{{ event.startDate | date:'yyyy' }}</span>
+              }
+            </div>
+
+            <div class="card-divider"></div>
+
+            <div class="card-info">
+              @if (event.isSecret) {
+                <span class="tag tag--secret">LIEU SECRET</span>
+              }
+              <h2 class="event-title">{{ event.title }}</h2>
+              <div class="event-meta">
+                <span class="meta-place">
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                  {{ event.place }}
+                </span>
+                <span class="meta-sep">·</span>
+                <span class="meta-type">{{ event.type }}</span>
+              </div>
+              <div class="meta-date-range">{{ formatDateRange(event) }}</div>
+            </div>
+
+            <div class="card-action">
+              <div class="seat-indicator" [class]="getSeatClass(event)">
+                @if (event.status !== 'past' && event.remainingSeats > 0) {
+                  <svg class="seat-icon" width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M4 18v2h4v-2H4zm0-6v4h2v-4H4zm6 8h4v-2h-4v2zm6-8v4h2v-4h-2zm0 6h4v2h-4v-2zM2 4v4h2V4H2zm0 8h2v-2H2v2zm8-8H8C6.9 4 6 4.9 6 6v8c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2h-2V2h-2v2zm0 10V6h4v8h-4zM2 12h2v2H2v-2z"/>
+                  </svg>
+                }
+                <span>{{ getSeatLabel(event) }}</span>
+              </div>
+
+              @if (event.ticketUrl && event.status !== 'past' && event.remainingSeats > 0) {
+                <a [href]="event.ticketUrl" target="_blank" class="ticket-btn">
+                  Billets →
+                </a>
+              }
+              @if (event.remainingSeats === 0 && event.status !== 'past') {
+                <span class="ticket-btn ticket-btn--disabled">Complet</span>
+              }
+            </div>
+          </div>
+
+          @if (event.status !== 'past') {
+            <div class="seats-bar">
+              <div
+                class="seats-bar-fill"
+                [class]="getSeatClass(event)"
+                [style.width.%]="((event.totalSeats - event.remainingSeats) / event.totalSeats) * 100">
+              </div>
+            </div>
+          }
+        </article>
+      }
+
+      @empty {
+        <div class="empty-state">
+          <span class="empty-icon">🩸</span>
+          <p>Aucun événement pour le moment</p>
+        </div>
+      }
+    </div>
+  }
+
+</section>

@@ -1,22 +1,49 @@
-// Couleurs
+/* =========================
+   COLORS - BASE
+========================= */
 $color-bg: #fdf6f0;
-$color-primary: #ffcccc; // rose pastel
-$color-accent: #9d1c36; // rouge aorte
-$color-green: #4a8c5c; // vert
-$color-text: #1a1a1a; // noir
+$color-text: #1a1a1a;
 $color-text-light: #666;
 
-// Typo
+/* =========================
+   COLORS - BRAND
+========================= */
+$color-primary: #ffcccc; // rose pastel
+$color-accent: #9d1c36;   // rouge aorte
+$color-green: #4a8c5c;
+$color-yellow: #f59e0b;
+
+/* Alias (optionnel mais pratique) */
+$accent: $color-accent;
+$accent-light: $color-primary;
+$green: $color-green;
+
+/* =========================
+   SURFACES / CARDS
+========================= */
+$card-bg: #fff9f5;
+$card-border: #f0d8cc;
+$card-radius: 20px;
+
+/* =========================
+   TYPOGRAPHY
+========================= */
 $font-title: 'Chewy', cursive;
 $font-body: 'Calibri', sans-serif;
+$font-mono: 'Space Mono', monospace;
+$font-display: 'Unbounded', sans-serif;
 
-// Espacements
+/* =========================
+   SPACING SYSTEM
+========================= */
 $spacing-xs: 8px;
 $spacing-sm: 16px;
 $spacing-md: 32px;
 $spacing-lg: 64px;
 $spacing-xl: 120px;
 
-// Breakpoints
+/* =========================
+   BREAKPOINTS
+========================= */
 $bp-mobile: 768px;
 $bp-tablet: 1024px;
