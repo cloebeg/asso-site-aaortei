@@ -1,13 +1,27 @@
 // Couleurs
 $color-bg: #fdf6f0;
-$color-primary: #ffcccc; // rose pastel
+$color-primary: #ffcccc; // rose pastel inf
+$color-secondary: #d33469; // rose vif 
 $color-accent: #9d1c36; // rouge aorte
-$color-green: #4a8c5c; // vert
-$color-text: #1a1a1a; // noir
+$color-green: #4a8c5c; // vert volcans
+$color-text: #1a1a1a; // noir basiqueuuuu
 $color-text-light: #666;
 
-// Typo
+// Titres
+
 $font-title: 'Chewy', cursive;
+
+@mixin title-style {
+font-family: $font-title;
+font-size: 5rem;
+line-height: 0.9;
+color: #161616;
+transform: rotate(-1deg);
+text-shadow: 
+ 6px 3px 0px rgb(243, 148, 148);
+}
+
+// Texte
 $font-body: 'Calibri', sans-serif;
 
 // Espacements

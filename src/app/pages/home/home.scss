@@ -10,9 +10,9 @@ section {
   position: relative;
 }
 
-/* HERO */
+/* BANNER */
 
-.home-hero {
+.home-banner {
   min-height: 100vh;
 
   padding: 90px 8vw;
@@ -25,7 +25,7 @@ section {
   overflow: hidden;
 }
 
-.hero-content {
+.banner-content {
   max-width: 700px;
   z-index: 5;
 }
@@ -33,7 +33,7 @@ section {
 .mini-text {
   display: inline-block;
 
-  background: #58ab6e;
+  background: #4a8c5c;
 
   color: white;
 
@@ -52,7 +52,7 @@ section {
   box-shadow: 4px 4px 0 #ffffff;
 }
 
-.home-hero h1 {
+.home-banner h1 {
   font-size: clamp(4rem, 10vw, 8rem);
 
   line-height: 0.95;
@@ -64,9 +64,12 @@ section {
   letter-spacing: -4px;
 
   letter-spacing: -1px;
+
+  text-shadow:
+    6px 3px 0px rgb(243, 148, 148);
 }
 
-.home-hero h1 span {
+.home-banner h1 span {
   display: inline-block;
 
   color: #d33469;
@@ -76,9 +79,11 @@ section {
   animation: bounceWord 3s infinite ease-in-out;
 
   letter-spacing: -1px;
+
+  text-shadow: none ;
 }
 
-.hero-description {
+.banner-description {
   font-size: 1.2rem;
 
   margin-top: 65px;
@@ -88,7 +93,7 @@ section {
   line-height: 1.7;
 }
 
-.hero-button {
+.banner-button {
   display: inline-block;
 
   margin-top: 55px;
@@ -101,7 +106,7 @@ section {
 
   text-decoration: none;
 
-  border-radius: 25px;
+  border-radius: 35px;
 
   font-size: 1.2rem;
 
@@ -114,7 +119,7 @@ section {
   transition: 0.3s ease;
 }
 
-.hero-button:hover {
+.banner-button:hover {
   transform: translateY(-8px) rotate(2deg);
 
   box-shadow: 12px 12px 0 #d33469;
@@ -141,7 +146,7 @@ section {
 
   padding: 50px;
 
-  border-radius: 35px;
+  border-radius: 55px;
 
   transform: rotate(-2deg);
 
@@ -277,7 +282,7 @@ section {
 /* RESPONSIVE */
 
 @media screen and (max-width: 900px) {
-  .home-hero {
+  .home-banner {
     padding-top: 180px;
   }
 

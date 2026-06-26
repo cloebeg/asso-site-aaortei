@@ -1,0 +1,20 @@
+<div class="product-page" *ngIf="product">
+
+  <button class="back-btn" (click)="back()">
+    ← Retour
+  </button>
+
+  <div class="product-detail">
+
+    <div class="product-emoji">{{ product.emoji }}</div>
+
+    <div class="product-content">
+      <h1>{{ product.name }}</h1>
+      <p>{{ product.description }}</p>
+      <strong class="price">{{ product.price }} €</strong>
+      <button class="buy-btn">Acheter</button>
+    </div>
+
+  </div>
+
+</div>

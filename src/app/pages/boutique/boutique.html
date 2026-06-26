@@ -1,1 +1,59 @@
-<p>boutique works!</p>
+<section class="shop-banner">
+
+  <div class="shop-intro">
+    <h1>Bienvenue dans notre
+      <span>boutique explosive</span>
+    </h1>
+  </div>
+
+</section>
+
+
+<section class="products-area">
+
+  <h2>Nos produits</h2>
+
+  <div class="products-toolbar">
+
+    <div class="filters">
+      <button
+        *ngFor="let filter of filters"
+        class="pill"
+        [class.active]="activeFilter === filter"
+        (click)="setFilter(filter)">
+        {{ filter }}
+      </button>
+    </div>
+
+    <input
+      class="search-bar"
+      type="text"
+      placeholder="Rechercher un produit..."
+      [(ngModel)]="searchQuery" />
+
+  </div>
+
+  <div class="products-grid">
+
+    <article
+      class="product-card"
+      routerLink="/boutique"
+      *ngFor="let product of filteredProducts">
+
+      <div class="product-image">
+        {{ product.emoji }}
+      </div>
+
+      <div class="product-info">
+        <h3>{{ product.name }}</h3>
+        <p>{{ product.description }}</p>
+        <div class="product-footer">
+          <strong>{{ product.price }} €</strong>
+          <button (click)="goToProduct(product.slug); $event.stopPropagation()">Acheter</button>        </div>
+      </div>
+
+    </article>
+
+  </div>
+
+</section>
