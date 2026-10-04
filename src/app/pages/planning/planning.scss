@@ -1,0 +1,884 @@
+// ======================================================
+// VARIABLES
+// ======================================================
+
+// Couleurs
+
+$color-bg: #fdf6f0;
+
+$color-primary: #ffcccc;
+
+$color-secondary: #d33469;
+
+$color-accent: #9d1c36;
+
+$color-green: #4a8c5c;
+
+$color-text: #1a1a1a;
+
+$color-text-light: #666;
+
+// Titres
+
+$font-title: 'Chewy', cursive;
+
+// Texte
+
+$font-body: 'Calibri', sans-serif;
+
+// Espacements
+
+$spacing-xs: 8px;
+
+$spacing-sm: 16px;
+
+$spacing-md: 32px;
+
+$spacing-lg: 64px;
+
+$spacing-xl: 120px;
+
+// Breakpoints
+
+$bp-mobile: 768px;
+
+$bp-tablet: 1024px;
+
+// ======================================================
+// PAGE
+// ======================================================
+
+.events-page {
+  min-height: 100vh;
+
+  padding: $spacing-xl $spacing-md;
+
+  background: $color-bg;
+
+  color: $color-text;
+
+  font-family: $font-body;
+}
+
+// ======================================================
+// HEADER
+// ======================================================
+
+.events-header {
+  max-width: 1200px;
+
+  margin: 0 auto $spacing-lg;
+
+  text-align: center;
+
+  .eyebrow {
+    display: inline-block;
+
+    margin-bottom: $spacing-sm;
+
+    color: $color-secondary;
+
+    font-size: 0.85rem;
+
+    font-weight: 800;
+
+    letter-spacing: 0.12em;
+
+    text-transform: uppercase;
+  }
+
+  h1 {
+    margin: 0;
+
+    font-family: $font-title;
+
+    font-size: clamp(4rem, 8vw, 7rem);
+
+    line-height: 0.9;
+
+    color: #161616;
+
+    transform: rotate(-1deg);
+
+    text-shadow: 6px 3px 0 rgb(243, 148, 148);
+  }
+
+  p {
+    max-width: 680px;
+
+    margin: $spacing-md auto 0;
+
+    color: $color-text-light;
+
+    font-size: 1.1rem;
+
+    line-height: 1.6;
+  }
+}
+
+// ======================================================
+// LAYOUT PRINCIPAL
+// ======================================================
+
+.events-layout {
+  max-width: 1200px;
+
+  margin: 0 auto;
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 0.95fr)
+    minmax(420px, 1.05fr);
+
+  gap: $spacing-md;
+
+  align-items: start;
+}
+
+// ======================================================
+// LISTE
+// ======================================================
+
+.events-list {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: $spacing-lg;
+}
+
+// ======================================================
+// SECTION
+// ======================================================
+
+.event-section {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: $spacing-sm;
+}
+
+.section-title {
+  display: flex;
+
+  align-items: center;
+
+  gap: 10px;
+
+  padding: 0 5px 5px;
+
+  h2 {
+    margin: 0;
+
+    font-family: $font-title;
+
+    font-size: 2rem;
+
+    font-weight: 400;
+  }
+
+  .section-count {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-width: 28px;
+
+    height: 28px;
+
+    padding: 0 8px;
+
+    border-radius: 50px;
+
+    background: $color-primary;
+
+    font-size: 0.8rem;
+
+    font-weight: 800;
+  }
+}
+
+.section-dot {
+  width: 12px;
+
+  height: 12px;
+
+  border-radius: 50%;
+
+  flex-shrink: 0;
+}
+
+.ongoing-dot {
+  background: $color-green;
+
+  box-shadow: 0 0 0 5px rgba(74, 140, 92, 0.15);
+}
+
+.upcoming-dot {
+  background: $color-secondary;
+
+  box-shadow: 0 0 0 5px rgba(211, 52, 105, 0.12);
+}
+
+.past-dot {
+  background: #999;
+}
+
+// ======================================================
+// CARTE ÉVÉNEMENT
+// ======================================================
+
+.event-card {
+  position: relative;
+
+  background: #ffffff;
+
+  border: 2px solid rgba(26, 26, 26, 0.1);
+
+  border-radius: 20px;
+
+  overflow: hidden;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+
+  &:hover {
+    transform: translate(-3px, -3px);
+
+    border-color: $color-secondary;
+
+    box-shadow: 5px 5px 0 $color-primary;
+  }
+
+  &.selected {
+    border-color: $color-secondary;
+
+    box-shadow: 5px 5px 0 $color-secondary;
+  }
+}
+
+.event-card-content {
+  padding: 20px;
+}
+
+// ======================================================
+// HEADER CARTE
+// ======================================================
+
+.event-card-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: flex-start;
+
+  gap: $spacing-sm;
+
+  h3 {
+    margin: 4px 0 0;
+
+    font-size: 1.25rem;
+
+    line-height: 1.2;
+  }
+}
+
+.event-category {
+  color: $color-secondary;
+
+  font-size: 0.7rem;
+
+  font-weight: 900;
+
+  letter-spacing: 0.08em;
+
+  text-transform: uppercase;
+}
+
+// ======================================================
+// BADGES
+// ======================================================
+
+.status-badge {
+  flex-shrink: 0;
+
+  padding: 8px 11px;
+
+  border-radius: 50px;
+
+  background: #f1eee9;
+
+  color: $color-text-light;
+
+  font-size: 0.68rem;
+
+  font-weight: 900;
+
+  letter-spacing: 0.03em;
+
+  white-space: nowrap;
+
+  &.online {
+    background: #e1f2e5;
+
+    color: #28663a;
+
+    border: 1px solid #a6cfaf;
+  }
+
+  &.soon {
+    background: #f3eee9;
+
+    color: #666;
+  }
+
+  &.ongoing {
+    background: #e1f2e5;
+
+    color: $color-green;
+
+    border: 1px solid #a6cfaf;
+  }
+
+  &.past {
+    background: #eeeeee;
+
+    color: #777;
+  }
+}
+
+// ======================================================
+// MÉTADONNÉES
+// ======================================================
+
+.event-meta {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 14px;
+
+  margin-top: 15px;
+
+  color: $color-text-light;
+
+  font-size: 0.9rem;
+}
+
+.event-bottom {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 10px;
+
+  margin-top: 15px;
+
+  padding-top: 14px;
+
+  border-top: 1px solid #eeeeee;
+
+  color: #555;
+
+  font-size: 0.88rem;
+
+  strong {
+    color: $color-accent;
+  }
+}
+
+.view-event {
+  color: $color-secondary;
+
+  font-weight: 700;
+}
+
+// ======================================================
+// PETITE JAUGE
+// ======================================================
+
+.mini-progress {
+  height: 5px;
+
+  margin-top: 15px;
+
+  overflow: hidden;
+
+  border-radius: 20px;
+
+  background: #eeeeee;
+}
+
+.mini-progress-fill {
+  height: 100%;
+
+  border-radius: inherit;
+
+  background: $color-secondary;
+
+  transition: width 0.3s ease;
+}
+
+// ======================================================
+// ÉVÉNEMENTS PASSÉS
+// ======================================================
+
+.past-card {
+  opacity: 0.55;
+
+  filter: saturate(0.4);
+
+  &:hover {
+    opacity: 0.85;
+
+    filter: saturate(0.8);
+  }
+
+  &.selected {
+    opacity: 0.85;
+
+    filter: saturate(0.8);
+  }
+}
+
+// ======================================================
+// EMPTY STATE
+// ======================================================
+
+.empty-state {
+  padding: 35px;
+
+  border: 2px dashed $color-primary;
+
+  border-radius: 18px;
+
+  color: $color-text-light;
+
+  text-align: center;
+
+  span {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-size: 2rem;
+  }
+
+  p {
+    margin: 0;
+  }
+}
+
+// ======================================================
+// PANNEAU DÉTAIL
+// ======================================================
+
+.event-detail {
+  position: sticky;
+
+  top: 25px;
+
+  overflow: hidden;
+
+  border: 2px solid $color-text;
+
+  border-radius: 24px;
+
+  background: #ffffff;
+
+  box-shadow: 8px 8px 0 $color-text;
+}
+
+// ======================================================
+// IMAGE
+// ======================================================
+
+.detail-image {
+  position: relative;
+
+  height: 270px;
+
+  overflow: hidden;
+
+  background: linear-gradient(135deg, $color-primary, $color-secondary);
+
+  img {
+    display: block;
+
+    width: 100%;
+
+    height: 100%;
+
+    object-fit: cover;
+  }
+}
+
+// ======================================================
+// BADGE DÉTAIL
+// ======================================================
+
+.detail-status {
+  position: absolute;
+
+  top: 18px;
+
+  right: 18px;
+
+  padding: 9px 13px;
+
+  border-radius: 50px;
+
+  background: #ffffff;
+
+  color: $color-text;
+
+  font-size: 0.72rem;
+
+  font-weight: 900;
+
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.15);
+
+  &.ongoing {
+    color: $color-green;
+  }
+
+  &.past {
+    color: #777;
+  }
+}
+
+// ======================================================
+// CONTENU DÉTAIL
+// ======================================================
+
+.detail-content {
+  padding: 30px;
+}
+
+.detail-category {
+  color: $color-secondary;
+
+  font-size: 0.75rem;
+
+  font-weight: 900;
+
+  letter-spacing: 0.1em;
+
+  text-transform: uppercase;
+}
+
+.detail-content h2 {
+  margin: 6px 0 25px;
+
+  font-family: $font-title;
+
+  font-size: 3.4rem;
+
+  line-height: 0.95;
+}
+
+// ======================================================
+// INFOS
+// ======================================================
+
+.detail-infos {
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 10px;
+}
+
+.detail-info {
+  display: flex;
+
+  align-items: center;
+
+  gap: 12px;
+
+  padding: 13px;
+
+  border-radius: 14px;
+
+  background: #fdf1ed;
+
+  .info-icon {
+    font-size: 1.25rem;
+  }
+
+  small {
+    display: block;
+
+    margin-bottom: 3px;
+
+    color: $color-text-light;
+
+    font-size: 0.7rem;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+  }
+
+  strong {
+    display: block;
+
+    font-size: 0.88rem;
+  }
+}
+
+// ======================================================
+// DESCRIPTION
+// ======================================================
+
+.detail-description {
+  margin-top: 25px;
+
+  h3 {
+    margin: 0 0 8px;
+
+    font-size: 1rem;
+  }
+
+  p {
+    margin: 0;
+
+    color: #555;
+
+    line-height: 1.6;
+  }
+}
+
+// ======================================================
+// DISPONIBILITÉ
+// ======================================================
+
+.availability {
+  margin-top: 25px;
+}
+
+.availability-header {
+  display: flex;
+
+  justify-content: space-between;
+
+  margin-bottom: 8px;
+
+  font-size: 0.9rem;
+}
+
+.availability-bar {
+  height: 10px;
+
+  overflow: hidden;
+
+  border-radius: 50px;
+
+  background: #eadfda;
+}
+
+.availability-fill {
+  height: 100%;
+
+  border-radius: inherit;
+
+  background: $color-secondary;
+
+  transition: width 0.4s ease;
+}
+
+// ======================================================
+// PRIX
+// ======================================================
+
+.price {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  margin-top: 20px;
+
+  padding: 14px 0;
+
+  border-top: 1px solid #eeeeee;
+
+  border-bottom: 1px solid #eeeeee;
+
+  span {
+    color: $color-text-light;
+  }
+
+  strong {
+    color: $color-accent;
+
+    font-size: 1.2rem;
+  }
+}
+
+// ======================================================
+// BOUTON HELLOASSO
+// ======================================================
+
+.ticket-button {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 10px;
+
+  margin-top: 20px;
+
+  padding: 15px 18px;
+
+  border-radius: 14px;
+
+  background: $color-secondary;
+
+  color: #ffffff;
+
+  text-decoration: none;
+
+  font-weight: 800;
+
+  box-shadow: 4px 4px 0 $color-accent;
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+
+  &:hover {
+    transform: translate(-2px, -2px);
+
+    box-shadow: 6px 6px 0 $color-accent;
+  }
+}
+
+// ======================================================
+// MESSAGES
+// ======================================================
+
+.ticket-unavailable,
+.currently-running,
+.past-notice {
+  display: flex;
+
+  align-items: center;
+
+  gap: 13px;
+
+  margin-top: 20px;
+
+  padding: 15px;
+
+  border-radius: 14px;
+}
+
+.ticket-unavailable {
+  background: #f4f0eb;
+}
+
+.currently-running {
+  background: #edf7ef;
+
+  border-left: 4px solid $color-green;
+}
+
+.past-notice {
+  background: #f1f1f1;
+
+  border-left: 4px solid #999;
+}
+
+.message-icon {
+  font-size: 1.3rem;
+}
+
+.ticket-unavailable strong,
+.currently-running strong,
+.past-notice strong {
+  display: block;
+
+  font-size: 0.9rem;
+}
+
+.ticket-unavailable small,
+.currently-running small,
+.past-notice small {
+  display: block;
+
+  margin-top: 3px;
+
+  color: $color-text-light;
+}
+
+// ======================================================
+// TABLET
+// ======================================================
+
+@media (max-width: $bp-tablet) {
+  .events-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .event-detail {
+    position: relative;
+
+    top: 0;
+  }
+}
+
+// ======================================================
+// MOBILE
+// ======================================================
+
+@media (max-width: $bp-mobile) {
+  .events-page {
+    padding: 60px $spacing-sm;
+  }
+
+  .events-header {
+    margin-bottom: $spacing-lg;
+
+    h1 {
+      font-size: 4.5rem;
+    }
+  }
+
+  .event-card-header {
+    flex-direction: column;
+  }
+
+  .status-badge {
+    align-self: flex-start;
+  }
+
+  .detail-image {
+    height: 210px;
+  }
+
+  .detail-content {
+    padding: 22px;
+  }
+
+  .detail-content h2 {
+    font-size: 2.8rem;
+  }
+
+  .detail-infos {
+    grid-template-columns: 1fr;
+  }
+}

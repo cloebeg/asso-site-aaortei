@@ -1,0 +1,652 @@
+<main class="events-page">
+
+  <!-- ==========================================
+       HEADER
+       ========================================== -->
+
+  <header class="events-header">
+
+    <span class="eyebrow">
+      AAORTEi · sorties & rencontres
+    </span>
+
+    <h1>Nos événements</h1>
+
+    <p>
+      Retrouve ici toutes les rencontres, sorties et événements
+      organisés par l’AAORTEi.
+    </p>
+
+  </header>
+
+
+  <!-- ==========================================
+       CONTENU PRINCIPAL
+       ========================================== -->
+
+  <section class="events-layout">
+
+
+    <!-- ========================================
+         LISTE DES ÉVÉNEMENTS
+         ======================================== -->
+
+    <div class="events-list">
+
+
+      <!-- ======================================
+           EN COURS
+           ====================================== -->
+
+      <section
+        class="event-section"
+        *ngIf="ongoingEvents.length > 0"
+      >
+
+        <div class="section-title">
+
+          <span class="section-dot ongoing-dot"></span>
+
+          <h2>En cours</h2>
+
+          <span class="section-count">
+            {{ ongoingEvents.length }}
+          </span>
+
+        </div>
+
+
+        <article
+          class="event-card ongoing-card"
+          *ngFor="let event of ongoingEvents"
+          [class.selected]="selectedEvent?.id === event.id"
+          (click)="selectEvent(event)"
+        >
+
+          <div class="event-card-content">
+
+            <div class="event-card-header">
+
+              <div>
+
+                <span class="event-category">
+                  {{ event.category }}
+                </span>
+
+                <h3>
+                  {{ event.title }}
+                </h3>
+
+              </div>
+
+              <span class="status-badge ongoing">
+                ● EN COURS
+              </span>
+
+            </div>
+
+
+            <div class="event-meta">
+
+              <span>
+                📅 {{ formatDate(event.startDate) }}
+              </span>
+
+              <span>
+                🕐 {{ formatTime(event.startDate) }}
+              </span>
+
+            </div>
+
+
+            <div class="event-bottom">
+
+              <span>
+                📍 {{ event.location }}
+              </span>
+
+              <strong>
+                {{ getPlacesText(event) }}
+              </strong>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      </section>
+
+
+
+      <!-- ======================================
+           À VENIR
+           ====================================== -->
+
+      <section class="event-section">
+
+        <div class="section-title">
+
+          <span class="section-dot upcoming-dot"></span>
+
+          <h2>À venir</h2>
+
+          <span class="section-count">
+            {{ upcomingEvents.length }}
+          </span>
+
+        </div>
+
+
+        <article
+          class="event-card"
+          *ngFor="let event of upcomingEvents"
+          [class.selected]="selectedEvent?.id === event.id"
+          (click)="selectEvent(event)"
+        >
+
+          <div class="event-card-content">
+
+            <div class="event-card-header">
+
+              <div>
+
+                <span class="event-category">
+                  {{ event.category }}
+                </span>
+
+                <h3>
+                  {{ event.title }}
+                </h3>
+
+              </div>
+
+
+              <span
+                class="status-badge"
+                [class.online]="event.ticketAvailable"
+                [class.soon]="!event.ticketAvailable"
+              >
+
+                <ng-container
+                  *ngIf="event.ticketAvailable"
+                >
+                  ● BILLETTERIE EN LIGNE
+                </ng-container>
+
+                <ng-container
+                  *ngIf="!event.ticketAvailable"
+                >
+                  BIENTÔT DISPONIBLE
+                </ng-container>
+
+              </span>
+
+            </div>
+
+
+            <div class="event-meta">
+
+              <span>
+                📅 {{ formatDate(event.startDate) }}
+              </span>
+
+              <span>
+                🕐 {{ formatTime(event.startDate) }}
+              </span>
+
+            </div>
+
+
+            <div class="event-bottom">
+
+              <span>
+                📍 {{ event.location }}
+              </span>
+
+              <strong>
+                🎟 {{ getPlacesText(event) }}
+              </strong>
+
+            </div>
+
+
+            <!-- JAUGE DES PLACES -->
+
+            <div
+              class="mini-progress"
+              *ngIf="event.totalPlaces > 0"
+            >
+
+              <div
+                class="mini-progress-fill"
+                [style.width.%]="getAvailability(event)"
+              ></div>
+
+            </div>
+
+          </div>
+
+        </article>
+
+
+        <!-- Aucun événement à venir -->
+
+        <div
+          class="empty-state"
+          *ngIf="upcomingEvents.length === 0"
+        >
+
+          <span>🌸</span>
+
+          <p>
+            Aucun événement prévu pour le moment.
+          </p>
+
+        </div>
+
+      </section>
+
+
+
+      <!-- ======================================
+           ÉVÉNEMENTS PASSÉS
+           ====================================== -->
+
+      <section
+        class="event-section past-section"
+        *ngIf="pastEvents.length > 0"
+      >
+
+        <div class="section-title">
+
+          <span class="section-dot past-dot"></span>
+
+          <h2>Événements passés</h2>
+
+          <span class="section-count">
+            {{ pastEvents.length }}
+          </span>
+
+        </div>
+
+
+        <article
+          class="event-card past-card"
+          *ngFor="let event of pastEvents"
+          [class.selected]="selectedEvent?.id === event.id"
+          (click)="selectEvent(event)"
+        >
+
+          <div class="event-card-content">
+
+            <div class="event-card-header">
+
+              <div>
+
+                <span class="event-category">
+                  {{ event.category }}
+                </span>
+
+                <h3>
+                  {{ event.title }}
+                </h3>
+
+              </div>
+
+              <span class="status-badge past">
+                TERMINÉ
+              </span>
+
+            </div>
+
+
+            <div class="event-meta">
+
+              <span>
+                📅 {{ formatDate(event.startDate) }}
+              </span>
+
+              <span>
+                🕐 {{ formatTime(event.startDate) }}
+              </span>
+
+            </div>
+
+
+            <div class="event-bottom">
+
+              <span>
+                📍 {{ event.location }}
+              </span>
+
+              <span class="view-event">
+                Voir les détails →
+              </span>
+
+            </div>
+
+          </div>
+
+        </article>
+
+      </section>
+
+    </div>
+
+
+
+    <!-- ==========================================
+         PANNEAU DÉTAIL
+         ========================================== -->
+
+    <aside
+      class="event-detail"
+      *ngIf="selectedEvent as event"
+    >
+
+
+      <!-- IMAGE -->
+
+      <div class="detail-image">
+
+        <img
+          [src]="event.image"
+          [alt]="event.title"
+        >
+
+        <span
+          class="detail-status"
+          [ngClass]="getStatusClass(event)"
+        >
+          {{ getStatusLabel(event) }}
+        </span>
+
+      </div>
+
+
+      <!-- CONTENU -->
+
+      <div class="detail-content">
+
+
+        <span class="detail-category">
+          {{ event.category }}
+        </span>
+
+
+        <h2>
+          {{ event.title }}
+        </h2>
+
+
+        <!-- INFORMATIONS PRINCIPALES -->
+
+        <div class="detail-infos">
+
+
+          <div class="detail-info">
+
+            <span class="info-icon">
+              📅
+            </span>
+
+            <div>
+
+              <small>Date</small>
+
+              <strong>
+                {{ formatDate(event.startDate) }}
+              </strong>
+
+            </div>
+
+          </div>
+
+
+          <div class="detail-info">
+
+            <span class="info-icon">
+              🕐
+            </span>
+
+            <div>
+
+              <small>Horaire</small>
+
+              <strong>
+                {{ formatTime(event.startDate) }}
+                –
+                {{ formatTime(event.endDate) }}
+              </strong>
+
+            </div>
+
+          </div>
+
+
+          <div class="detail-info">
+
+            <span class="info-icon">
+              📍
+            </span>
+
+            <div>
+
+              <small>Lieu</small>
+
+              <strong>
+                {{ event.location }}
+              </strong>
+
+            </div>
+
+          </div>
+
+
+          <div class="detail-info">
+
+            <span class="info-icon">
+              🎟
+            </span>
+
+            <div>
+
+              <small>Places</small>
+
+              <strong>
+                {{ getPlacesText(event) }}
+              </strong>
+
+            </div>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- DESCRIPTION -->
+
+        <div class="detail-description">
+
+          <h3>
+            À propos de l’événement
+          </h3>
+
+          <p>
+            {{ event.description }}
+          </p>
+
+        </div>
+
+
+
+        <!-- DISPONIBILITÉ -->
+
+        <div
+          class="availability"
+          *ngIf="getEventStatus(event) !== 'past'"
+        >
+
+          <div class="availability-header">
+
+            <strong>
+              Places disponibles
+            </strong>
+
+            <span>
+              {{ event.availablePlaces }}
+              / {{ event.totalPlaces }}
+            </span>
+
+          </div>
+
+
+          <div class="availability-bar">
+
+            <div
+              class="availability-fill"
+              [style.width.%]="getAvailability(event)"
+            ></div>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- PRIX -->
+
+        <div
+          class="price"
+          *ngIf="event.price"
+        >
+
+          <span>Tarif</span>
+
+          <strong>
+            {{ event.price }}
+          </strong>
+
+        </div>
+
+
+
+        <!-- BILLETTERIE -->
+
+        <a
+          *ngIf="
+            event.ticketAvailable &&
+            event.ticketUrl &&
+            getEventStatus(event) !== 'past'
+          "
+          class="ticket-button"
+          [href]="event.ticketUrl"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+
+          <span>🎟</span>
+
+          <span>
+            Réserver sur HelloAsso
+          </span>
+
+          <span>↗</span>
+
+        </a>
+
+
+
+        <!-- BILLETTERIE BIENTÔT -->
+
+        <div
+          class="ticket-unavailable"
+          *ngIf="
+            !event.ticketAvailable &&
+            getEventStatus(event) === 'upcoming'
+          "
+        >
+
+          <span class="message-icon">
+            ⏳
+          </span>
+
+          <div>
+
+            <strong>
+              Billetterie bientôt disponible
+            </strong>
+
+            <small>
+              Les réservations ouvriront prochainement.
+            </small>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- ÉVÉNEMENT EN COURS -->
+
+        <div
+          class="currently-running"
+          *ngIf="getEventStatus(event) === 'ongoing'"
+        >
+
+          <span class="message-icon">
+            🟢
+          </span>
+
+          <div>
+
+            <strong>
+              L’événement est actuellement en cours !
+            </strong>
+
+            <small>
+              Profite bien de l’événement 🎉
+            </small>
+
+          </div>
+
+        </div>
+
+
+
+        <!-- ÉVÉNEMENT PASSÉ -->
+
+        <div
+          class="past-notice"
+          *ngIf="getEventStatus(event) === 'past'"
+        >
+
+          <span class="message-icon">
+            📁
+          </span>
+
+          <div>
+
+            <strong>
+              Cet événement est terminé
+            </strong>
+
+            <small>
+              Tu peux toujours consulter ses informations.
+            </small>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </aside>
+
+  </section>
+
+
+</main>
+
