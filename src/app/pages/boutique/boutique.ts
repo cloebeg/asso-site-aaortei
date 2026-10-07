@@ -42,11 +42,25 @@ export default class BoutiqueComponent {
   ];
 
   get filteredProducts(): Product[] {
+    const search = this.normalizeSearch(this.searchQuery);
+  
     return this.products.filter(p => {
       const matchCategory = this.activeFilter === 'tout' || p.category === this.activeFilter;
-      const matchSearch = p.name.toLowerCase().includes(this.searchQuery.toLowerCase());
+  
+      const productName = this.normalizeSearch(p.name);
+  
+      const matchSearch = !search || productName.includes(search);
+  
       return matchCategory && matchSearch;
     });
+  }
+  
+  private normalizeSearch(value: string): string {
+    return value
+      .toLowerCase()
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .replace(/[^a-z0-9]/g, '');
   }
 
   setFilter(filter: 'tout' | 'textile' | 'goodies' | 'digital') {
