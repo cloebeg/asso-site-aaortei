@@ -170,3 +170,33 @@
     }
   }
 }
+
+.footer-legal {
+display: flex;
+align-items: center;
+justify-content: center;
+gap: $spacing-xs;
+flex-wrap: wrap;
+}
+
+.footer-separator {
+color: rgba(255, 255, 255, 0.25);
+}
+
+.footer-mention {
+color: rgba(255, 255, 255, 0.4);
+text-decoration: none;
+transition: color 0.2s ease;
+
+&:hover {
+color: $color-primary;
+}
+}
+
+@media (max-width: $bp-mobile) {
+.footer-legal {
+width: 100%;
+order: 2;
+}
+}
+

@@ -1,0 +1,137 @@
+.legal-page {
+  max-width: 950px;
+  margin: 0 auto;
+  padding: 70px 30px 100px;
+  color: #2d2d2d;
+  font-family: 'Poppins', sans-serif;
+}
+
+/* ---------- HEADER ---------- */
+
+.legal-header {
+  margin-bottom: 60px;
+
+  .eyebrow {
+    display: inline-block;
+    margin-bottom: 12px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: #8b5cf6;
+  }
+
+  h1 {
+    margin: 0 0 18px;
+    font-size: clamp(2.3rem, 5vw, 4rem);
+    font-weight: 800;
+    line-height: 1.1;
+  }
+
+  p {
+    max-width: 650px;
+    margin: 0;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #6b6b6b;
+  }
+}
+
+/* ---------- SECTIONS ---------- */
+
+.legal-section {
+  margin-bottom: 48px;
+
+  h2 {
+    margin: 0 0 20px;
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: #292929;
+  }
+
+  p {
+    margin: 0 0 16px;
+    font-size: 0.95rem;
+    line-height: 1.85;
+    color: #555;
+  }
+
+  strong {
+    font-weight: 700;
+    color: #333;
+  }
+
+  a {
+    color: #8b5cf6;
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+/* ---------- INFORMATIONS ---------- */
+
+.info-card {
+  margin-top: 20px;
+  padding: 24px 28px;
+  border-radius: 18px;
+  background: #f8f7fb;
+  border: 1px solid #ece9f5;
+
+  p {
+    margin-bottom: 8px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+/* ---------- DATE ---------- */
+
+.legal-update {
+  margin-top: 70px;
+  padding-top: 25px;
+  border-top: 1px solid #e8e8e8;
+
+  p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #888;
+  }
+}
+
+/* ---------- MOBILE ---------- */
+
+@media (max-width: 600px) {
+  .legal-page {
+    padding: 45px 20px 70px;
+  }
+
+  .legal-header {
+    margin-bottom: 45px;
+
+    h1 {
+      font-size: 2.4rem;
+    }
+  }
+
+  .legal-section {
+    margin-bottom: 38px;
+
+    h2 {
+      font-size: 1.2rem;
+    }
+
+    p {
+      font-size: 0.9rem;
+    }
+  }
+
+  .info-card {
+    padding: 20px;
+    border-radius: 14px;
+  }
+}
