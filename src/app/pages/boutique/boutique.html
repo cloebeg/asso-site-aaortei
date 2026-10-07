@@ -37,11 +37,11 @@
 
     <article
       class="product-card"
-      routerLink="/boutique"
+      [routerLink]="['/boutique/product', product.slug]"
       *ngFor="let product of filteredProducts">
 
       <div class="product-image">
-        {{ product.emoji }}
+        <img [src]="product.image" [alt]="product.name" (error)="onImageError($event)" />
       </div>
 
       <div class="product-info">

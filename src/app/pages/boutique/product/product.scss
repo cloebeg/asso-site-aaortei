@@ -20,13 +20,26 @@
   display: flex;
   align-items: center;
   gap: 80px;
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
 }
 
-.product-emoji {
-  font-size: 150px;
-  flex-shrink: 0;
+.product-photo {
+  flex: 0 0 400px;
+  height: 400px;
+  background: #fff;
+  border-radius: 40px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
 }
 
 .product-content {
@@ -53,16 +66,28 @@
 .buy-btn {
   background: #4a8c5c;
   color: white;
-  border: none;
+  text-decoration: none;
   padding: 15px 40px;
   border-radius: 30px;
   font-size: 1rem;
-  cursor: pointer;
   align-self: flex-start;
   transition: 0.3s ease;
 
   &:hover {
     transform: translateY(-3px);
     box-shadow: 0 10px 20px rgba(74, 140, 92, 0.3);
+  }
+}
+
+@media (max-width: 768px) {
+  .product-detail {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .product-photo {
+    flex: none;
+    width: 100%;
+    height: 300px;
   }
 }
