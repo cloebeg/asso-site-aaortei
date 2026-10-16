@@ -26,6 +26,10 @@ interface EventItem {
   styleUrl: './planning.scss',
 })
 export default class Planning {
+  // true  = la page affiche "À venir" (les événements ci-dessous sont cachés)
+  // false = la page affiche les événements normalement
+  readonly comingSoonMode = true;
+
   events: EventItem[] = [
     {
       id: 1,

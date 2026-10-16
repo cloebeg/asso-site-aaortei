@@ -2,19 +2,23 @@
 
 .shop-banner {
 @include title-style();
-padding: 50px 8vw;
+padding: 50px 8vw 20px;
 display:flex;
 align-items:center;
+justify-content:center;
 border-radius:0 0 80px 80px;
 margin-top: 30px;
-margin-bottom: 90px;
+margin-bottom: 0;
 }
 
 .shop-intro {
+width:100%;
 max-width:1000px;
+margin:0 auto;
+text-align:center;
 
 h1 {
-font-size:clamp(3rem,8vw,6rem);
+font-size: 80px;
 line-height:.95;
 font-weight:900;
 
@@ -30,15 +34,15 @@ span {
 }
 
 p {
-margin-top: 40px;
+margin-top: 25px;
 font-size:1.3rem;
 line-height:1.6;
 }
 }
 
 .products-area {
-margin-top: -80px;
-padding: 50px;
+margin-top: 0;
+padding: 20px 50px 50px;
 
 h2 {
 font-size:3rem;
@@ -80,7 +84,7 @@ transition:.4s ease;
 .product-info {
   display: flex;
   flex-direction: column;
-  flex: 1; 
+  flex: 1;
   gap:20px;
 }
 
@@ -88,7 +92,7 @@ transition:.4s ease;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: auto; 
+  margin-top: auto;
 }
 
 .product-footer strong {
@@ -124,7 +128,7 @@ cursor:pointer;
 }
 
 .product-info button {
- 
+
     margin-top: 15px;
     align-self: center;
 

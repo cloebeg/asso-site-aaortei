@@ -1,19 +1,14 @@
+@use '../../../styles/variables' as *;
+
 .albums-section {
   padding: 120px 40px;
   position: relative;
 }
 
 .albums-title {
-  font-family: 'Chewy', cursive;
-  font-size: 4rem;
-  text-align: center;
+  @include title-style;
+
   margin-bottom: 80px;
-
-  transform: rotate(-1deg);
-
-  color: #161616;
-
-  text-shadow: 5px 5px 0 rgb(243, 148, 148);
 }
 
 .albums-grid {
@@ -102,7 +97,7 @@
 }
 
 .album-overlay h3 {
-  font-family: 'Chewy', cursive;
+  font-family: $font-title;
   font-size: 2rem;
   margin-bottom: 10px;
 
@@ -110,7 +105,7 @@
 }
 
 .album-overlay p {
-  font-family: 'Calibri', sans-serif;
+  font-family: $font-body;
   font-size: 1rem;
 }
 
@@ -156,77 +151,77 @@ body > *:not(.global-cow-spots) {
   width: 260px;
   top: 700px;
   left: 3%;
-  animation-duration: 16s;
+  animation-duration: 8s;
 }
 
 .spot2 {
   width: 320px;
   top: 750px;
   right: 10%;
-  animation-duration: 22s;
+  animation-duration: 11s;
 }
 
 .spot3 {
   width: 200px;
   top: 900px;
   left: 30%;
-  animation-duration: 18s;
+  animation-duration: 9s;
 }
 
 .spot4 {
   width: 280px;
   top: 1100px;
   right: 2%;
-  animation-duration: 25s;
+  animation-duration: 12s;
 }
 
 .spot5 {
   width: 450px;
   top: 1250px;
   left: -3%;
-  animation-duration: 20s;
+  animation-duration: 10s;
 }
 
 .spot6 {
   width: 650px;
   top: 1500px;
   right: -10%;
-  animation-duration: 24s;
+  animation-duration: 12s;
 }
 
 .spot7 {
   width: 230px;
   top: 1350px;
   left: 55%;
-  animation-duration: 19s;
+  animation-duration: 10s;
 }
 
 .spot8 {
   width: 259px;
   top: 1700px;
   left: 3%;
-  animation-duration: 14s;
+  animation-duration: 7s;
 }
 
 .spot9 {
   width: 270px;
   top: 1900px;
   right: 25%;
-  animation-duration: 21s;
+  animation-duration: 10s;
 }
 
 .spot10 {
   width: 280px;
   top: 1870px;
   left: 17%;
-  animation-duration: 17s;
+  animation-duration: 9s;
 }
 
 .spot11 {
   width: 200px;
   top: 1920px;
   right: -5%;
-  animation-duration: 26s;
+  animation-duration: 13s;
 }
 
 .spot12 {
@@ -234,7 +229,7 @@ body > *:not(.global-cow-spots) {
   top: 5000px;
   left: 75%;
   opacity: 0.05;
-  animation-duration: 18s;
+  animation-duration: 9s;
 }
 
 @keyframes floatSpot {

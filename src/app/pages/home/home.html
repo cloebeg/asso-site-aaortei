@@ -1,7 +1,7 @@
 <section class="home-banner">
 
   <div class="banner-content">
-    <p class="mini-text">Association Auvergnate Organisatrice des Rencontres du Territoire pour Étudiant•e•s Infirmier•e•s</p>
+    <p class="mini-text">Association Auvergnate Organisatrice des Rencontres du Territoire pour Étudiant.e.s Infirmier.e.s</p>
 
     <h1>
       L’asso qui fait
@@ -46,17 +46,17 @@
   <h2>Nos partenaires</h2>
 
   <div class="partners-slider">
-
     <div class="partners-track">
 
-      <img src="logos/logo1.png" alt="">
-      <img src="logos/logo2.png" alt="">
-      <img src="logos/logo3.png" alt="">
-      <img src="logos/logo4.png" alt="">
-      <img src="logos/logo5.png" alt="">
+      @for (group of groups; track group) {
+        <div class="partners-group">
+          @for (logo of logos; track $index) {
+            <img [src]="logo" alt="">
+          }
+        </div>
+      }
 
     </div>
-
   </div>
 
 </section>

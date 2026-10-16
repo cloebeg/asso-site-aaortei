@@ -55,7 +55,7 @@
 
   margin-bottom: 70px;
 
-  max-width: fit-content;
+  white-space: nowrap;
 }
 
 /* titre */
@@ -243,4 +243,13 @@
   justify-content: center;
   gap: 40px;
   margin-bottom: 40px;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media screen and (max-width: 1150px) {
+  .intro-badge {
+    white-space: normal;
+    max-width: 100%;
+  }
 }

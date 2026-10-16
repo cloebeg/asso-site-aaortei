@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Photos } from './photos';
+import Photos from './photos';
 
 describe('Photos', () => {
   let component: Photos;

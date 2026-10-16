@@ -1,48 +1,4 @@
-// ======================================================
-// VARIABLES
-// ======================================================
-
-// Couleurs
-
-$color-bg: #fdf6f0;
-
-$color-primary: #ffcccc;
-
-$color-secondary: #d33469;
-
-$color-accent: #9d1c36;
-
-$color-green: #4a8c5c;
-
-$color-text: #1a1a1a;
-
-$color-text-light: #666;
-
-// Titres
-
-$font-title: 'Chewy', cursive;
-
-// Texte
-
-$font-body: 'Calibri', sans-serif;
-
-// Espacements
-
-$spacing-xs: 8px;
-
-$spacing-sm: 16px;
-
-$spacing-md: 32px;
-
-$spacing-lg: 64px;
-
-$spacing-xl: 120px;
-
-// Breakpoints
-
-$bp-mobile: 768px;
-
-$bp-tablet: 1024px;
+@use '../../../styles/variables' as *;
 
 // ======================================================
 // PAGE
@@ -87,19 +43,9 @@ $bp-tablet: 1024px;
   }
 
   h1 {
+    @include title-style;
+
     margin: 0;
-
-    font-family: $font-title;
-
-    font-size: clamp(4rem, 8vw, 7rem);
-
-    line-height: 0.9;
-
-    color: #161616;
-
-    transform: rotate(-1deg);
-
-    text-shadow: 6px 3px 0 rgb(243, 148, 148);
   }
 
   p {
@@ -851,10 +797,6 @@ $bp-tablet: 1024px;
 
   .events-header {
     margin-bottom: $spacing-lg;
-
-    h1 {
-      font-size: 4.5rem;
-    }
   }
 
   .event-card-header {
@@ -879,5 +821,61 @@ $bp-tablet: 1024px;
 
   .detail-infos {
     grid-template-columns: 1fr;
+  }
+}
+
+// ======================================================
+// MODE "À VENIR"
+// ======================================================
+
+.coming-soon {
+  max-width: 700px;
+
+  margin: 0 auto;
+
+  padding: 60px 40px;
+
+  text-align: center;
+
+  background: #ffffff;
+
+  border: 3px solid $color-text;
+
+  border-radius: 30px;
+
+  box-shadow: 10px 10px 0 $color-primary;
+
+  transform: rotate(-1deg);
+
+  .coming-soon-emoji {
+    display: block;
+
+    margin-bottom: 15px;
+
+    font-size: 3.5rem;
+  }
+
+  h2 {
+    margin: 0 0 15px;
+
+    font-family: $font-title;
+
+    font-size: 3rem;
+
+    font-weight: 400;
+
+    color: $color-secondary;
+  }
+
+  p {
+    max-width: 480px;
+
+    margin: 0 auto;
+
+    color: $color-text-light;
+
+    font-size: 1.15rem;
+
+    line-height: 1.6;
   }
 }
