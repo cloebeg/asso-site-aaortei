@@ -1,8 +1,24 @@
-<nav class="topnav">
+<button
+  class="burger"
+  type="button"
+  (click)="toggle()"
+  [class.open]="menuOpen()"
+  [attr.aria-expanded]="menuOpen()"
+  aria-controls="main-menu"
+  aria-label="Ouvrir le menu">
+  <span class="burger-bar"></span>
+  <span class="burger-bar"></span>
+  <span class="burger-bar"></span>
+</button>
+
+<div class="backdrop" [class.open]="menuOpen()" (click)="close()"></div>
+
+<nav class="topnav" id="main-menu" [class.open]="menuOpen()">
   @for (link of navLinks; track link.path) {
     <a [routerLink]="link.path"
        routerLinkActive="active"
        [routerLinkActiveOptions]="{ exact: link.path === '/' }"
+       (click)="close()"
        class="topnav-item">
       <img [src]="link.icon" [alt]="link.label" class="topnav-icon" />
       <span class="topnav-label">{{ link.label }}</span>

@@ -37,7 +37,6 @@
 
     <article
       class="product-card"
-      routerLink="/boutique"
       *ngFor="let product of filteredProducts">
 
       <div class="product-image">
@@ -49,7 +48,14 @@
         <p>{{ product.description }}</p>
         <div class="product-footer">
           <strong>{{ product.price }} €</strong>
-          <button (click)="goToProduct(product.slug); $event.stopPropagation()">Acheter</button>        </div>
+          <a
+            class="buy-button"
+            [href]="product.helloassoUrl || defaultHelloassoUrl"
+            target="_blank"
+            rel="noopener noreferrer">
+            Acheter
+          </a>
+        </div>
       </div>
 
     </article>

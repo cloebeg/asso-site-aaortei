@@ -8,3 +8,4 @@ import { RouterLink } from '@angular/router';
   styleUrl: './photos.scss',
 })
 export default class Photos {}
+

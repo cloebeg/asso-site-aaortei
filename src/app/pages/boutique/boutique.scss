@@ -66,8 +66,6 @@ background:#fff;
 border-radius:40px;
 padding:35px;
 
-cursor:pointer;
-
 box-shadow:
 0 20px 50px rgba(0,0,0,.08);
 
@@ -116,22 +114,23 @@ align-self: center;
 
 }
 
-button {
-
-background:#4a8c5c;
-color:white;
-border:none;
-padding:15px 30px;
-border-radius:30px;
-cursor:pointer;
-
+button,
+.buy-button {
+  display: inline-block;
+  background: #4a8c5c;
+  color: white;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 30px;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1rem;
 }
 
-.product-info button {
-
-    margin-top: 15px;
-    align-self: center;
-
+.product-info button,
+.product-info .buy-button {
+  margin-top: 15px;
+  align-self: center;
 }
 
 &:hover {
@@ -237,4 +236,91 @@ box-shadow:
   40%       { transform: rotate(-2deg) translateX(3px); }
   60%       { transform: rotate(-4deg) translateX(-2px); }
   80%       { transform: rotate(-2deg) translateX(2px); }
+}
+
+@media screen and (max-width: 767px) {
+  /* ----- Bannière ----- */
+  .shop-banner {
+    padding: 40px 16px 10px;
+  }
+
+  .shop-intro h1 {
+    font-size: clamp(2.4rem, 11vw, 5rem);
+    margin-bottom: 60px;
+  }
+
+  /* ----- Zone produits ----- */
+  .products-area {
+    padding: 16px 16px 40px;
+  }
+
+  .products-area h2 {
+    font-size: 2.2rem;
+    margin-bottom: 28px;
+  }
+
+  /* ----- Filtres + recherche ----- */
+  .products-toolbar {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .filters {
+    flex-wrap: nowrap;
+    gap: 6px;
+    width: 100%;
+  }
+
+  .pill {
+    flex: 1 1 auto;       /* les 4 pastilles se partagent la ligne */
+    min-width: 0;
+    padding: 8px 6px;
+    font-size: 0.85rem;
+    color: #1a1a1a;
+    text-align: center;
+    white-space: nowrap;
+  }
+
+  .search-bar {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+  }
+
+  /* ----- Cartes produits ----- */
+  .products-grid {
+    gap: 28px;
+  }
+
+  .product-card {
+    padding: 22px;
+    border-radius: 30px;
+  }
+
+  .product-card .product-image {
+    height: 140px;
+    font-size: 72px;
+  }
+
+  .product-card .product-info {
+    gap: 14px;
+  }
+
+  .product-card h3 {
+    font-size: 1.3rem;
+  }
+
+  .product-card .buy-button {
+    padding: 12px 24px;
+  }
+}
+
+/* Pas d'effet "survol" sur écran tactile (il resterait bloqué après un tap) */
+@media (hover: none) {
+  .product-card:hover {
+    transform: none;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.08);
+  }
 }

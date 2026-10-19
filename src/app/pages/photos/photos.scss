@@ -242,3 +242,73 @@ body > *:not(.global-cow-spots) {
     transform: translate(20px, -20px) rotate(4deg);
   }
 }
+
+@media screen and (max-width: 767px) {
+  /* La page devient la référence des taches, et coupe ce qui dépasse */
+  .photos-page {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .albums-section {
+    position: relative;
+    z-index: 1;
+    padding: 70px 16px 130px;
+  }
+
+  .albums-title {
+    margin-bottom: 40px;
+    min-height: 80px;      /* hauteur fixe du titre : sert de repère aux taches */
+  }
+
+  .albums-grid {
+    gap: 70px;             /* des trous plus larges, où les taches se voient */
+  }
+
+  /* Le conteneur démarre exactement au début de la 1re carte :
+     70 (padding) + 80 (titre) + 40 (marge) = 190px */
+  .cow-spots {
+    position: absolute;
+    top: 190px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .spot {
+    opacity: 1;
+  }
+
+  /* Gauche : impaires (de 2% à 32% de l'écran) / Droite : paires (de 68% à 98%) */
+  /* Trou 1 (entre carte 1 et 2) */
+  .spot1  { width: min(30vw, 130px); top: 365px;  left: 2%;   right: auto; }
+  .spot2  { width: min(28vw, 120px); top: 395px;  right: 2%;  left: auto; }
+  /* Trou 2 */
+  .spot3  { width: min(26vw, 110px); top: 850px;  left: 4%;   right: auto; }
+  .spot4  { width: min(30vw, 130px); top: 830px;  right: 0%;  left: auto; }
+  /* Trou 3 */
+  .spot5  { width: min(30vw, 130px); top: 1305px; left: -2%;  right: auto; }
+  .spot6  { width: min(28vw, 120px); top: 1335px; right: 4%;  left: auto; }
+  /* Trou 4 */
+  .spot7  { width: min(26vw, 110px); top: 1795px; left: 6%;   right: auto; }
+  .spot8  { width: min(30vw, 130px); top: 1775px; right: -2%; left: auto; }
+  /* Trou 5 */
+  .spot9  { width: min(30vw, 130px); top: 2245px; left: 0%;   right: auto; }
+  .spot10 { width: min(28vw, 120px); top: 2275px; right: 5%;  left: auto; }
+  /* Sous la dernière carte */
+  .spot11 { width: min(24vw, 100px); top: 2765px; left: 8%;   right: auto; }
+  .spot12 { width: min(22vw, 90px);  top: 2780px; right: 10%; left: auto; }
+
+  .album-card {
+    width: min(100%, 320px);
+    height: 400px;
+  }
+
+  .album-overlay h3 {
+    font-size: 1.6rem;
+  }
+
+}

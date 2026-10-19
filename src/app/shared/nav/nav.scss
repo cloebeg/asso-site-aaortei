@@ -1,5 +1,12 @@
 @use '../../../styles/variables' as *;
 
+// ---------- Burger (caché sur desktop) ----------
+.burger {
+  display: none;
+  margin-top: 20px;
+}
+
+// ---------- Nav (base) ----------
 .topnav {
   width: 100%;
   background: transparent;
@@ -17,23 +24,6 @@
   gap: 4px;
   text-decoration: none;
   transition: transform 0.25s ease;
-
-  &:nth-child(odd) {
-    transform: translateY(-20px);
-  }
-
-  &:nth-child(even) {
-    transform: translateY(10px);
-  }
-
-  &:hover {
-    &:nth-child(odd) {
-      transform: translateY(-28px) scale(1.1);
-    }
-    &:nth-child(even) {
-      transform: translateY(2px) scale(1.1);
-    }
-  }
 
   &.active .topnav-label {
     border-color: $color-accent;
@@ -64,18 +54,198 @@
     border-color 0.2s ease;
 }
 
-@media (max-width: $bp-mobile) {
+// ---------- Desktop uniquement : décalages "en vague" ----------
+@media (min-width: $bp-mobile) {
+  .topnav-item {
+    &:nth-child(odd) {
+      transform: translateY(-20px);
+    }
+    &:nth-child(even) {
+      transform: translateY(10px);
+    }
+  }
+}
+
+@media (min-width: $bp-mobile) and (hover: hover) {
+  .topnav-item:hover {
+    &:nth-child(odd) {
+      transform: translateY(-28px) scale(1.1);
+    }
+    &:nth-child(even) {
+      transform: translateY(2px) scale(1.1);
+    }
+  }
+}
+
+// ---------- Tablette : on resserre ----------
+@include tablet {
   .topnav {
-    padding: 0 $spacing-xs;
-    overflow-x: auto;
+    padding: 0 $spacing-sm;
+    top: calc(72px + env(safe-area-inset-top, 0px));
+    max-height: calc(100dvh - 96px - env(safe-area-inset-top, 0px));
+  }
+  .topnav-icon {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+// ---------- Mobile : burger + menu plein écran ----------
+@include mobile {
+  // ---------- Burger ----------
+  .burger {
+    position: fixed;
+    top: calc(#{$spacing-sm} + env(safe-area-inset-top, 0px));
+    right: $spacing-sm;
+    z-index: 300;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    border: 2px solid $color-title;
+    border-radius: 50%;
+    background: $color-secondary;
+    cursor: pointer;
+    transition:
+      background 0.25s ease,
+      transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    .burger-bar {
+      width: 22px;
+      height: 3px;
+      border-radius: 2px;
+      background: white;
+      transition:
+        transform 0.3s ease,
+        opacity 0.2s ease;
+    }
+
+    &.open {
+      background: $color-accent;
+      transform: rotate(90deg);
+    }
+    &.open .burger-bar:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+    &.open .burger-bar:nth-child(2) {
+      opacity: 0;
+    }
+    &.open .burger-bar:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+  }
+
+  // ---------- Fond assombri ----------
+  .backdrop {
+    display: block;
+    position: fixed;
+    inset: 0;
+    z-index: 240;
+    background: rgba(26, 26, 26, 0.4);
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.3s ease,
+      visibility 0s linear 0.3s;
+
+    &.open {
+      opacity: 1;
+      visibility: visible;
+      transition-delay: 0s;
+    }
+  }
+
+  // ---------- Panneau arrondi ----------
+  .topnav {
+    position: fixed;
+    top: 72px;
+    right: $spacing-sm;
+    left: $spacing-sm;
+    max-width: 360px;
+    margin: 0 0 0 auto;
+    width: auto;
+    z-index: 250;
+    max-height: calc(100dvh - 96px);
+    overflow-y: auto;
+    padding: $spacing-md $spacing-sm;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    gap: $spacing-md $spacing-sm;
+
+    background: $color-bg;
+    border: 2px solid $color-title;
+    border-radius: 32px;
+    box-shadow: 6px 6px 0 $color-secondary;
+
+    // état fermé
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: scale(0.7) translateY(-16px);
+    transform-origin: top right;
+    transition:
+      opacity 0.25s ease,
+      transform 0.25s ease,
+      visibility 0s linear 0.25s;
+
+    // état ouvert (petit rebond à l'arrivée)
+    &.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: scale(1) translateY(0);
+      transition:
+        opacity 0.2s ease,
+        transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+        visibility 0s;
+    }
+  }
+
+  // ---------- Icônes : apparition en cascade ----------
+  .topnav-item {
+    opacity: 0;
+    transform: translateY(14px) scale(0.8);
+    transition:
+      opacity 0.15s ease,
+      transform 0.15s ease;
+  }
+
+  .topnav.open .topnav-item {
+    opacity: 1;
+    transform: none;
+    transition:
+      opacity 0.3s ease,
+      transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+
+    @for $i from 1 through 6 {
+      &:nth-child(#{$i}) {
+        transition-delay: #{0.08 + $i * 0.05}s;
+      }
+    }
   }
 
   .topnav-icon {
-    width: 60px;
-    height: 60px;
+    width: 72px;
+    height: 72px;
   }
 
   .topnav-label {
-    font-size: 0.75rem;
+    font-size: 0.9rem;
+  }
+}
+
+// Respect des utilisateurs qui désactivent les animations
+@media (prefers-reduced-motion: reduce) {
+  .topnav,
+  .topnav-item,
+  .backdrop,
+  .burger,
+  .burger-bar {
+    transition: none !important;
   }
 }

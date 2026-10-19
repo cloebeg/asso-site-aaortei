@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener, signal } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 
 @Component({
@@ -8,6 +8,8 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
   styleUrl: './nav.scss',
 })
 export default class NavComponent {
+  menuOpen = signal(false);
+
   navLinks = [
     { path: '/', label: 'Accueil', icon: 'nav/nav_home.png' },
     { path: '/presentation', label: 'Présentation', icon: 'nav/nav_members.png' },
@@ -16,4 +18,17 @@ export default class NavComponent {
     { path: '/boutique', label: 'Boutique', icon: 'nav/nav_shop.png' },
     { path: '/contact', label: 'Contact', icon: 'nav/nav_contact.png' },
   ];
+
+  toggle() {
+    this.menuOpen.update((v) => !v);
+  }
+
+  close() {
+    this.menuOpen.set(false);
+  }
+
+  @HostListener('document:keydown.escape')
+  onEscape() {
+    this.close();
+  }
 }

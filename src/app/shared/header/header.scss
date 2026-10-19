@@ -10,6 +10,7 @@
   background: transparent;
   z-index: 200;
 
+
   .header-drip {
     position: absolute;
     top: 0;
@@ -27,11 +28,13 @@
     justify-content: center;
     margin-bottom: -20px;
 
-    .logo {
-      height: 400px;
-      width: auto;
-      object-fit: contain;
-      transition: transform 0.3s ease;
+   .logo {
+    height: clamp(180px, 45vw, 400px);
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+    transition: transform 0.3s ease;
     }
   }
 }
+

@@ -4,19 +4,8 @@
   width: 100%;
   background: #1a1a1a;
   color: white;
-  margin-top: $spacing-xl;
   position: relative;
   overflow: hidden;
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, $color-accent, $color-primary, $color-green, $color-accent);
-  }
 }
 
 .footer-top {
@@ -194,9 +183,25 @@ color: $color-primary;
 }
 
 @media (max-width: $bp-mobile) {
-.footer-legal {
-width: 100%;
-order: 2;
-}
+  .footer {
+    margin-top: $spacing-sm;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .footer-legal {
+    width: 100%;
+    order: 2;
+  }
+
+  .footer-contact-list {
+    margin-bottom: -30px;
+  }
+
 }
 
