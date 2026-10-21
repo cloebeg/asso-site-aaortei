@@ -12,8 +12,6 @@ export const routes: Routes = [
 
   { path: 'boutique', loadComponent: () => import('./pages/boutique/boutique') },
 
-  { path: 'boutique/product/:slug', loadComponent: () => import('./pages/boutique/product/product') },
-
   { path: 'contact', loadComponent: () => import('./pages/contact/contact') },
 
   { path: 'mentions-legales', loadComponent: () => import('./pages/mentions-legales/mentions-legales').then(m => m.MentionsLegales) },

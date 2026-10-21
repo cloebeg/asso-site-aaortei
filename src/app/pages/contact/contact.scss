@@ -1,33 +1,28 @@
+@use '../../../styles/variables' as *;
+
 .contact-page {
+  --espace-haut: 120px;   /* ← hauteur du titre : même valeur que Photos */
+
   min-height: 100vh;
-  padding: 10px 30px;
   position: relative;
   overflow: hidden;
+  padding: var(--espace-haut) 0 60px;
 
   display: flex;
   flex-direction: column;     /* titre en haut, contenu en dessous */
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 
   font-family: 'Poppins', sans-serif;
 }
 
-/* TITRE (centré sur toute la page) */
+/* TITRE (identique aux autres pages) */
 
 .contact-title-mobile {
+  @include title-style;
+
   width: 100%;
-  margin: 55px 0 32px;
-  text-align: center;
-
-  font-family: 'Chewy', cursive;
-  font-size: 3.5rem;
-  line-height: 0.95;
-  color: #161616;
-
-  transform: rotate(-2deg);
-  text-shadow:
-    4px 4px 0 rgb(243, 148, 148),
-    8px 8px 0 rgba(0, 0, 0, 0.06);
+  margin: 0 0 110px;          /* 2e valeur = espace entre le titre et le formulaire */
 }
 
 /* CONTENU : illustration à gauche, formulaire à droite */
@@ -42,23 +37,30 @@
 /* ILLUSTRATION */
 
 .contact-illustration {
-  flex: 0 1 clamp(160px, 24vw, 420px);
-  min-width: 0;
-  max-height: 80vh;
-  align-self: center;
-  margin-right: 20px;
-  object-fit: contain;
+  --taille: 28vw;    /* ← taille de l'image */
+  --gauche: 9vw;     /* ← décalage horizontal : plus petit = plus à gauche, négatif = dépasse */
+  --haut: 70%;       /* ← position verticale : 60% plus haut, 80% plus bas */
+
+  position: absolute;
+  left: var(--gauche);
+  top: var(--haut);
+  transform: translateY(-50%);
+  width: var(--taille);
+  max-width: none;
+  z-index: 1;
   pointer-events: none;
 }
 
 /* COLONNE DU FORMULAIRE */
 
 .contact-main {
-  --largeur: 620px;   /* ← LA valeur à changer pour la largeur */
+  --largeur: 620px;   /* largeur du formulaire */
+  --decalage: 9vw;    /* ← LA valeur à changer : plus grand = plus à gauche */
 
   width: 100%;
   max-width: var(--largeur);
   min-width: 0;
+  margin-right: var(--decalage);
 }
 
 /* CARD */
@@ -244,13 +246,46 @@
   }
 }
 
+.piege {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+}
+
+.form-message {
+  grid-column: span 2;
+  margin: 0;
+  padding: 12px 16px;
+  border-radius: 16px;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.form-message--ok {
+  background: #e6f4ea;
+  color: #1e6b36;
+}
+
+.form-message--error {
+  background: #fdeaea;
+  color: #9d1c36;
+}
+
+.contact-button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+
 /* RESPONSIVE */
 
 @media screen and (max-width: 767px) {
   .contact-page {
+    --espace-haut: 70px;       /* même valeur que la page Photos sur téléphone */
+
     min-height: auto;
-    padding: 80px 12px 32px;   /* 80px en haut : place pour le burger */
-    justify-content: flex-start;
+    padding: var(--espace-haut) 12px 32px;
     align-items: stretch;
   }
 
@@ -265,13 +300,12 @@
 
   .contact-main {
     max-width: none;
+    margin-right: 0;
   }
 
   /* Titre au-dessus de la carte */
   .contact-title-mobile {
-    font-size: clamp(2.4rem, 11vw, 3.2rem);
     margin: 0 0 40px;
-    text-shadow: 3px 3px 0 rgb(243, 148, 148);
   }
 
   /* Carte droite, sans flou (plus fluide sur téléphone) */
@@ -364,6 +398,8 @@
     transform: scale(0.98);
   }
 }
+
+
 
 /* Pas d'effet "survol" collé après un tap */
 @media (hover: none) {

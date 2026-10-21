@@ -4,7 +4,7 @@
 
   <div class="contact-content">
 
-    <img src="illustration_contact.png" alt="" aria-hidden="true" class="contact-illustration">
+    <img src="vache_lettre.png" alt="" aria-hidden="true" class="contact-illustration">
 
     <div class="contact-main">
 
@@ -15,7 +15,12 @@
           Écris-nous juste ici !
         </p>
 
-        <form class="contact-form">
+        <form class="contact-form" (submit)="onSubmit($event)">
+
+          <input type="hidden" name="_subject" value="Nouveau message depuis le site AAORTEi">
+
+          <!-- champ piège anti-spam : invisible pour les humains -->
+          <input class="piege" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true">
 
           <div class="form-row">
 
@@ -57,7 +62,7 @@
             <input
               id="mail"
               type="email"
-              name="mail"
+              name="email"
               placeholder="exemple@mail.com"
               required
               autocomplete="email"
@@ -80,9 +85,18 @@
             ></textarea>
           </div>
 
-          <button type="submit" class="contact-button">
-            Envoyer
+          <button type="submit" class="contact-button" [disabled]="status() === 'sending'">
+            {{ status() === 'sending' ? 'Envoi...' : 'Envoyer' }}
           </button>
+
+          @if (status() === 'success') {
+            <p class="form-message form-message--ok">Merci, ton message est bien envoyé ! 🐮</p>
+          }
+          @if (status() === 'error') {
+            <p class="form-message form-message--error">
+              Oups, l'envoi a échoué. Réessaie ou écris-nous à aaorteicontact&#64;gmail.com
+            </p>
+          }
 
         </form>
 

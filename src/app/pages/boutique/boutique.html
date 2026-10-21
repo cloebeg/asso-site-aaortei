@@ -40,8 +40,10 @@
       *ngFor="let product of filteredProducts">
 
       <div class="product-image">
-        {{ product.emoji }}
-      </div>
+       @if (product.image) {
+        <img [src]="product.image" [alt]="product.name" loading="lazy">
+      } 
+   </div>
 
       <div class="product-info">
         <h3>{{ product.name }}</h3>

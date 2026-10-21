@@ -6,7 +6,7 @@ interface Product {
   name: string;
   description: string;
   price: number;
-  emoji: string;
+  image?: string;
   category: 'textile' | 'goodies' | 'digital';
   helloassoUrl?: string; // lien HelloAsso propre à chaque produit
 }
@@ -30,65 +30,72 @@ export default class BoutiqueComponent {
 
   products: Product[] = [
     {
-      name: 'T-shirt simple',
-      description: "Un t-shirt aux couleurs de l'asso avec notre logo.",
-      price: 25, emoji: '🌋', category: 'textile',
+      name: 'Pull AAORTEi',
+      description: "Un pull aux couleurs de l'asso avec notre logo.",
+      price: 25, category: 'textile',
+      image: 'produits/visuel_a_venir.png',
       helloassoUrl: '', // colle le lien ici
     },
+
     {
-      name: 'T-shirt personalisé',
-      description: "Un t-shirt avec une vachette à votre effigie et votre prénom. + fichier png de ta vache perso.",
-      price: 35, emoji: '🌋', category: 'textile',
+      name: 'Combar AAORTEi',
+      description: "Une combar au thème de notre asso.",
+      price: 70, category: 'textile',
+      image: 'produits/combar_aaortei.png',
       helloassoUrl: '',
     },
-    {
-      name: 'Tote bag',
-      description: "Un tote bag avec notre logo et à notre style.",
-      price: 10, emoji: '🌋', category: 'textile',
-      helloassoUrl: '',
-    },
-    {
-      name: 'Casquette',
-      description: "Une casquette avec notre logo et à notre style.",
-      price: 15, emoji: '🌋', category: 'textile',
-      helloassoUrl: '',
-    },
+
     {
       name: 'Gourde',
       description: "Une gourde réutilisable aux couleurs de l'asso.",
-      price: 15, emoji: '🌋', category: 'goodies',
+      price: 10, category: 'goodies',
+      image: 'produits/visuel_a_venir.png',
       helloassoUrl: '',
     },
-    {
-      name: 'Sticker',
-      description: "Sticker du logo de notre asso.",
-      price: 2, emoji: '🌋', category: 'goodies',
-      helloassoUrl: '',
-    },
-    {
-      name: 'Broderie',
-      description: "Une broderie de notre logo.",
-      price: 6, emoji: '🌋', category: 'textile',
-      helloassoUrl: '',
-    },
-    {
-      name: "Pin's",
-      description: "Des pins de notre logo.",
-      price: 4, emoji: '🌋', category: 'goodies',
-      helloassoUrl: '',
-    },
-    {
-      name: 'Porte-clés peluche',
-      description: "Un porte-clés en peluche de notre mascotte.",
-      price: 15, emoji: '🌋', category: 'goodies',
-      helloassoUrl: '',
-    },
-    {
+
+   {
       name: 'Vache personnalisée',
       description: "Fichier png de ta vache perso selon tes préférences. *Environ 10 Jours d'attente",
-      price: 10, emoji: '🌋', category: 'digital',
+      price: 5, category: 'digital',
+      image: 'produits/vacheperso.png',
       helloassoUrl: '',
     },
+
+    {
+      name: 'Patch AAORTEi',
+      description: "Broderie du logo de notre asso.",
+      price: 4, category: 'textile',
+      image: 'produits/broderie_aaortei.png',
+      helloassoUrl: '',
+    },
+
+   {
+      name: "Pin's AAORTEi",
+      description: "Pin's de notre logo.",
+      price: 2, category: 'goodies',
+      image: 'produits/pins_aaortei.png',
+      helloassoUrl: '',
+    },
+
+    {
+      name: 'Patch VODY',
+      description: "Une broderie de notre vachette dans une VODY.",
+      price: 3.50, category: 'textile',
+      image: 'produits/broderie_vody.png',
+      helloassoUrl: '',
+    },
+
+
+
+    {
+      name: "Pin's VODY",
+      description: "Pin's de notre vachette dans une VODY.",
+      price: 2, category: 'goodies',
+      image: 'produits/pins_vody.png',
+      helloassoUrl: '',
+    },
+
+
   ];
 
   get filteredProducts(): Product[] {
