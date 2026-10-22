@@ -29,3 +29,25 @@ h4 {
   font-family: $font-title;
 }
 
+/* Curseur normal */
+html,
+body {
+  cursor: url('/curseur/curseur.png') 4 4, auto;
+}
+
+/* Curseur sur les liens, boutons et champs cliquables */
+a,
+button,
+.pill,
+[routerLink],
+label,
+select,
+input[type='submit'] {
+  cursor: url('/curseur/curseur.png') 4 4, pointer;
+}
+
+/* Curseur texte dans les champs */
+input,
+textarea {
+  cursor: text;
+}
